@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="./styles/normalize.css">
+  <link rel="stylesheet" href="./styles/markdown.css">
+  <link rel="stylesheet" href="./styles/atom-one-light.css">
+  <script src="http://apps.bdimg.com/libs/highlight.js/9.1.0/highlight.min.js"></script>
+  <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+  <style>
+    html,
+    body {
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .left-input {
+      width: 49%;
+      background-color: #eee;
+      height: 100%;
+      float: left;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+
+    .markdown-input {
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+      border: 1px solid #d7d7d7;
+      border-radius: 10px;
+      outline: none;
+      padding: 10px;
+      resize: none;
+    }
+
+    .right-output {
+      width: 49%;
+      overflow-y: auto;
+      height: 100%;
+      background-color: #eee;
+      float: right;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+
+    .markdown-wd,.markdown-body {
+      background-color: #ffffff;
+      height: 100%;
+      width: 100%;
+      box-sizing: border-box;
+      border-radius: 10px;
+      padding: 10px;
+      overflow-x: auto;
+    }
+  </style>
+  <title>markdown</title>
+</head>
+
+<body>
+  <div class="left-input">
+    <textarea class="markdown-input"></textarea>
+  </div>
+  <div class="right-output">
+    <div class="markdown-wd">
+
+    </div>
+  </div>
+  <script src="./scripts/marked.js"></script>
+  <script>
+    $(document).ready(function () {
+      document.querySelector('.markdown-input').addEventListener('input', function (e) {
+        document.querySelector('.markdown-wd').innerHTML = marked(e.target.value);
+        $('pre code').each(function (i, block) {
+          hljs.highlightBlock(block);
+        });
+      }, false);
+
+    });
+  </script>
+</body>
+
+</html>
